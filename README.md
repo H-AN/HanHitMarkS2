@@ -24,9 +24,9 @@ This plugin is free, but you can support me by buying me a cup of coffee. 😊 T
 
 <div align="center">
 
-视频演示 : https://www.bilibili.com/
+视频演示 : https://www.bilibili.com/video/BV1UWqkB4ERf
 
-Video : https://www.youtube.com/
+Video : https://www.youtube.com/watch?v=59QzFj4j3qY
 
 </div>
 
