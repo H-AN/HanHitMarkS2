@@ -97,3 +97,99 @@ PrecacheSoundEvent Precache sound events, multiple sound events should be separa
 
 ```
 
+---
+v2.0 Update / v2.0 更新
+
+New configuration added / 新增配置：
+
+Damage hit markers and damage numbers can now be displayed without using Workshop resources.
+
+伤害标记与伤害数字现在可以 不使用创意工坊资源 显示。
+
+You can switch the display type via configuration and use World Text to create hit markers and damage numbers.
+
+可以通过配置切换类型，使用 Worldtext 制作标记和数字。
+
+New fields / 新增字段
+
+```
+HitMarkType
+
+0 = Use World Text / 使用 Worldtext
+
+1 = Use Workshop particle resources / 使用创意工坊粒子资源
+
+Default / 默认: 0
+
+DamageNumberType
+
+0 = Use World Text / 使用 Worldtext
+
+1 = Use Workshop particle resources / 使用创意工坊粒子资源
+
+Default / 默认: 0
+
+New configuration file / 新增配置文件
+
+HanHitMarkWorldTextCFG.jsonc
+
+World Text Hit Marker Settings / Worldtext 击中标记设置
+
+WTHitMarkSignHead
+Custom symbol for headshot hit marker / 击中爆头标记自定义符号
+Default / 默认: ⊙
+
+WTHitMarkSignBody
+Custom symbol for body hit marker / 击中身体标记自定义符号
+Default / 默认: X
+
+WTHitMarkSizeHead
+Custom symbol size for headshot hit marker / 击中爆头标记尺寸
+Default / 默认: 25
+
+WTHitMarkSizeBody
+Custom symbol size for body hit marker / 击中身体标记尺寸
+Default / 默认: 25
+
+WTHitMarkFontColor
+Custom color for hit marker text / 击中标记自定义颜色
+Default / 默认: "255, 0, 0, 255"
+
+WTHitMarkDrawBackground
+Enable black background box for hit marker / 是否开启黑色方框背景
+Default / 默认: false
+
+WTHitMarkFontName
+Custom font for hit marker / 击中标记自定义字体
+Default / 默认: "Arial Bold"
+
+World Text Damage Number Settings / Worldtext 击中数字设置
+
+WTHitNumberPosType
+Damage number display type / 击中数字显示类型
+
+0 = Fixed upward vertical movement / 固定竖直向上
+
+1 = Random bouncing movement / 随机跳动
+Default / 默认: 0
+
+WTHitNumberSizeHead
+Damage number size for headshots / 爆头数字尺寸
+Default / 默认: 25
+
+WTHitNumberSizeBody
+Damage number size for body hits / 身体数字尺寸
+Default / 默认: 20
+
+WTHitNumberFontColor
+Custom color for damage numbers / 击中数字自定义颜色
+Default / 默认: "255, 0, 0, 255"
+
+WTHitNumberDrawBackground
+Enable black background box for damage numbers / 是否开启黑色方框背景
+Default / 默认: false
+
+WTHitNumberFontName
+Custom font for damage numbers / 击中数字自定义字体
+Default / 默认: "Arial Bold"
+```
