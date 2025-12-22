@@ -1,12 +1,14 @@
 {
   "HanHitMarkS2CFG": {
     "EnabledHitMark": true,
+	"HitMarkType": 0,
     "HitMarkOnlyTeam": "any",
     "HitMarkHeadParticles": "particles/exg/exg_hitmarker2.vpcf",
     "HitMarkBodyParticles": "particles/exg/exg_hitmarker.vpcf",
     "HitMarkHeadSound": "Breakable.Flesh",
     "HitMarkBodySound": "Flesh_Bloody.ImpactHard",
     "EnabledDamageNumber": true,
+	"DamageNumberType": 0,
     "DamageNumberOnlyTeam": "any",
     "DamageNumberParticles0": "particles/exg/hitmarker/0.vpcf",
     "DamageNumberParticles1": "particles/exg/hitmarker/01.vpcf",

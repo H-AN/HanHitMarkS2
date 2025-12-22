@@ -1,0 +1,17 @@
+{
+  "HanHitMarkWorldTextS2CFG": {
+    "WTHitMarkSignHead": "⊙",
+    "WTHitMarkSignBody": "X",
+    "WTHitMarkSizeHead": 25,
+    "WTHitMarkSizeBody": 20,
+    "WTHitMarkFontColor": "255, 0, 0, 255",
+    "WTHitMarkDrawBackground": false,
+    "WTHitMarkFontName": "Arial Bold",
+    "WTHitNumberPosType": 0,
+    "WTHitNumberSizeHead": 25,
+    "WTHitNumberSizeBody": 20,
+    "WTHitNumberFontColor": "255, 0, 0, 255",
+    "WTHitNumberDrawBackground": false,
+    "WTHitNumberFontName": "Arial Bold"
+  }
+}
