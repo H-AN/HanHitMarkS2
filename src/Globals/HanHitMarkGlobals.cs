@@ -1,4 +1,6 @@
+using SwiftlyS2.Shared.Natives;
 using SwiftlyS2.Shared.Players;
+using SwiftlyS2.Shared.SchemaDefinitions;
 
 namespace HanHitMarkS2;
 
@@ -6,6 +8,9 @@ public class HanHitMarkGlobals
 {
     public Dictionary<int, HitInfo> LastHitInfo = new();
     public Dictionary<int, string> DigitParticles = new Dictionary<int, string>();
+
+    public Dictionary<int, ImpactInfo> lastImpact = new();
+    public HashSet<int> impactLocked = new();
     public void LoadDigitParticles(HanHitMarkConfigs cfg)
     {
         DigitParticles.Clear();
@@ -29,3 +34,16 @@ public class HitInfo
     public bool Headshot;
     public int Damage;
 }
+
+public struct WorldTextContext
+{
+    public Vector Position;
+    public QAngle Angles;
+}
+
+public class ImpactInfo
+{
+    public Vector Position;
+    public float Time;
+}
+

@@ -3,12 +3,15 @@ namespace HanHitMarkS2;
 public class HanHitMarkConfigs
 {
     public bool EnabledHitMark { get; set; } = true;
+
+    public int HitMarkType { get; set; } = 0;
     public string HitMarkOnlyTeam { get; set; } = "any";
     public string HitMarkHeadParticles { get; set; } = string.Empty;
     public string HitMarkBodyParticles { get; set; } = string.Empty;
     public string HitMarkHeadSound { get; set; } = string.Empty;
     public string HitMarkBodySound { get; set; } = string.Empty;
     public bool EnabledDamageNumber { get; set; } = true;
+    public int DamageNumberType { get; set; } = 0;
     public string DamageNumberOnlyTeam { get; set; } = "any";
     public string DamageNumberParticles0 { get; set; } = string.Empty;
     public string DamageNumberParticles1 { get; set; } = string.Empty;
