@@ -12,7 +12,7 @@ namespace HanHitMarkS2;
 
 [PluginMetadata(
     Id = "HanHitMarkS2",
-    Version = "2.0.0",
+    Version = "2.1.0",
     Name = "HanHitMarkS2",
     Author = "H-AN",
     Description = "击中特效与伤害数字 for Sw2/HitMark & Damage number for Sw2")]
