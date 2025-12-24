@@ -52,6 +52,17 @@ public class HanHitMarkEvents
         if (victim == null || !victim.IsValid)
             return HookResult.Continue;
 
+        var attackerpawn = attacker.PlayerPawn;
+        if (attackerpawn == null || !attackerpawn.IsValid)
+            return HookResult.Continue;
+
+        var victimpawn = victim.PlayerPawn;
+        if (victimpawn == null || !victimpawn.IsValid)
+            return HookResult.Continue;
+
+        if(attackerpawn.TeamNum == victimpawn.TeamNum)
+            return HookResult.Continue;
+
         var cfg = _config.CurrentValue;
 
         var Wtcfg = _worldtextconfig.CurrentValue;
@@ -98,6 +109,17 @@ public class HanHitMarkEvents
 
         var victim = @event.UserIdPlayer;
         if (victim == null || !victim.IsValid)
+            return HookResult.Continue;
+
+        var attackerpawn = attacker.PlayerPawn;
+        if (attackerpawn == null || !attackerpawn.IsValid)
+            return HookResult.Continue;
+
+        var victimpawn = victim.PlayerPawn;
+        if (victimpawn == null || !victimpawn.IsValid)
+            return HookResult.Continue;
+
+        if (attackerpawn.TeamNum == victimpawn.TeamNum)
             return HookResult.Continue;
 
         var cfg = _config.CurrentValue;
