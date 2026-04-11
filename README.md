@@ -12,9 +12,10 @@
 
 <hr>
 
-# HanHitMarkerS2
+# HanHitMarkerS2 V3.0 插件重构
 
 `HanHitMarkerS2` 是一个基于 **SwiftlyS2** 的 CS2 击中反馈插件。
+v3.0 新增支持 DispatchParticleEffect 将击中特效粒子直接发送至玩家屏幕准心
 
 它为攻击者提供三类仅自己可见的反馈：
 
