@@ -1,195 +1,358 @@
-<div align="center"><h1><img width="600" height="131" alt="68747470733a2f2f70616e2e73616d7979632e6465762f732f56596d4d5845" src="https://github.com/user-attachments/assets/d0316faa-c2d0-478f-a642-1e3c3651f1d4" /></h1></div>
-
-<div class="section">
-<div align="center"><h1>HitMark & Damage number for SwiftlyS2</h1></div>
-
-
-<div align="center"><strong>基于 SwiftlyS2 框架开发的 CS2 伤害标记与伤害数字。</p></div>
-
-<div align="center"><strong>支持自定义配置。</p></div>
-<div align="center"><strong>支持自定义粒子,队伍开关,伤害数字,击中标记,音效等。</p></div>
+﻿<div align="center">
+  <a href="https://swiftlys2.net/docs/" target="_blank">
+    <img src="https://github.com/user-attachments/assets/d0316faa-c2d0-478f-a642-1e3c3651f1d4" alt="SwiftlyS2" width="780" />
+  </a>
 </div>
 
 <div align="center">
-
----
-本插件免费,但是你可以买一杯咖啡支持我 😊 谢谢!
-
-This plugin is free, but you can support me by buying me a cup of coffee. 😊 Thanks!
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z31PY52N)
-  
-
+  <a href="./README.md"><img src="https://flagcdn.com/48x36/cn.png" alt="中文" width="48" height="36" /> <strong>中文版</strong></a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="./README.en.md"><img src="https://flagcdn.com/48x36/gb.png" alt="English" width="48" height="36" /> <strong>English</strong></a>
 </div>
 
-<div align="center">
+<hr>
 
-视频演示 : https://www.bilibili.com/video/BV1UWqkB4ERf
+# HanHitMarkerS2
 
-Video : https://www.youtube.com/watch?v=59QzFj4j3qY
+`HanHitMarkerS2` 是一个基于 **SwiftlyS2** 的 CS2 击中反馈插件。
 
-</div>
+它为攻击者提供三类仅自己可见的反馈：
+
+- 击中特效
+- 伤害数字
+- 屏幕击中粒子
+
+其中击中特效和伤害数字都支持 `WorldText` 或粒子两种显示方式，屏幕击中粒子支持爆头与身体分别配置不同粒子。
+
+---
+
+## 功能概览
+
+- 三个功能全部为攻击者单独显示，不会广播给其他玩家。
+- `HitMarkType` 与 `DamageNumberType` 现在使用更直观的字符串模式：
+  - `worldtext`
+  - `particles`
+- `HitMarkType` 或 `DamageNumberType` 留空、填写错误时会自动回退为 `worldtext`。
+- 屏幕击中粒子支持爆头与身体分别配置：
+  - `ScreenHitEffectHeadParticle`
+  - `ScreenHitEffectBodyParticle`
+- 每个功能都支持独立配置：
+  - 全局开关
+  - 队伍限制
+  - 玩家默认开关
+  - 切换命令
+  - 命令权限
+  - 功能权限
+- 命令提示文本已经迁移到翻译文件，不再写在配置文件内。
+- 主配置与 WorldText 配置都支持热重载。
 
 ---
 
-📦 创意工坊示例（HitMark 粒子特效 例子）
+## 命令
 
+默认提供三个原始命令：
 
-插件可结合以下创意工坊资源使用（示例）：
-3626771819
+| 功能 | 默认命令 | 说明 |
+|------|------|------|
+| 击中特效 | `sw_hitmarker` | 切换自己的击中特效 |
+| 伤害数字 | `sw_damage` | 切换自己的伤害数字 |
+| 屏幕击中粒子 | `sw_screenhitmarker` | 切换自己的屏幕击中粒子 |
 
-Workshop Resource Example (HitMark Particle, number etc.)
+说明：
 
-The plugin can be used in conjunction with the following Workshop resources (example): Resource ID: 3626771819
-
-```
-要使用创意工坊资源,需要服务器安装metamod插件 multiaddonmanager 来管理服务器和玩家使用下载和安装创意工坊资源
-
-安装multiaddonmanager插件后 在game\csgo\cfg\multiaddonmanager\multiaddonmanager.cfg配置文件中
- 
-找到第一行 mm_extra_addons  "3626771819"
-
-把资源ID填写上去 等待服务器下载资源完毕 玩家进服会自动下载资源
-
-之后用 Source2Viewer 软件 打开资源包 查看资源内的 粒子路径名字
-
-之后根据需要填写到HitMark配置内使用
-
-To use Workshop content, the server must have the Metamod plugin "MultiAddonManager" installed to handle downloads.
-After installation, edit the config file:
-game\csgo\cfg\multiaddonmanager\multiaddonmanager.cfg
-
-Locate the line:
-mm_extra_addons "3626771819"
-
-Add the Workshop ID and wait for the server to download it. Clients will automatically download the content upon joining.
-Then, use Source2Viewer to inspect the addon and find Particle paths.
-Fill them into the HitMark configuration as needed.
-
-```
----
-
-🧩 插件配置 / Plugin Configuration
-```
-EnabledHitMark 开启/关闭 击中特效 默认 true
-HitMarkOnlyTeam 仅允许某个队伍 使用 默认 "any" 所有队伍都能使用 "ct" 只有ct启用
-HitMarkHeadParticles 爆头击中标记粒子路径
-HitMarkBodyParticles 击中身体标记粒子路径
-HitMarkHeadSound 爆头击中音效 (不填写不播放)
-HitMarkBodySound 击中身体音效 (不填写不播放)
-EnabledDamageNumber 开启/关闭 击中数字显示 默认 true
-DamageNumberOnlyTeam 仅允许某个队伍 使用 默认 "any" 所有队伍都能使用 "ct" 只有ct启用
-DamageNumberParticles0 - DamageNumberParticles9 需要0-9 一共10个单独数字粒子来显示伤害飘字
-DamageNumberSound 显示伤害数字时播放的音效 (不填写不播放)
-PrecacheSoundEvent 预缓存声音事件, 多个声音事件 用 , 隔开
-
-EnabledHitMark Enable/Disable hit marker effects Default true
-HitMarkOnlyTeam Only allow a specific team to use it Default "any" all teams can use it "ct" only CT team can use it
-HitMarkHeadParticles Headshot hit marker particle path
-HitMarkBodyParticles Body hit marker particle path
-HitMarkHeadSound Headshot hit sound (leave empty to disable)
-HitMarkBodySound Body hit sound (leave empty to disable)
-EnabledDamageNumber Enable/Disable damage number display Default true
-DamageNumberOnlyTeam Only allow a specific team to use it Default "any" all teams can use it "ct" only CT team can use it
-DamageNumberParticles0 - DamageNumberParticles9 Requires 10 separate digit particles (0–9) to display floating damage numbers
-DamageNumberSound Sound played when damage numbers are displayed (leave empty to disable)
-PrecacheSoundEvent Precache sound events, multiple sound events should be separated by ,
-
-```
+- 这些命令以原始命令名注册，插件内部不再暴露“是否注册为 raw”的配置项。
+- 如果你的服务器命令系统支持聊天命令封装，通常也可以配合聊天前缀使用。
+- 每个命令都可以独立设置权限。
 
 ---
-v2.0 Update / v2.0 更新
 
-New configuration added / 新增配置：
+## 权限设计
 
-Damage hit markers and damage numbers can now be displayed without using Workshop resources.
+每个功能现在有两种权限字段：
 
-伤害标记与伤害数字现在可以 不使用创意工坊资源 显示。
+- `XXXCommandPermission`
+  - 控制“谁可以执行切换命令”
+- `XXXFeaturePermission`
+  - 控制“谁可以真正使用这个功能”
 
-You can switch the display type via configuration and use World Text to create hit markers and damage numbers.
+以击中特效为例：
 
-可以通过配置切换类型，使用 Worldtext 制作标记和数字。
+- `HitMarkerCommandPermission`
+- `HitMarkerFeaturePermission`
 
-New fields / 新增字段
+同理：
 
+- `DamageNumberCommandPermission`
+- `DamageNumberFeaturePermission`
+- `ScreenHitEffectCommandPermission`
+- `ScreenHitEffectFeaturePermission`
+
+行为规则：
+
+- 命令权限不满足：玩家不能通过命令切换该功能。
+- 功能权限不满足：玩家即使默认开启，也不会实际看到该功能效果。
+- 权限字段留空：表示所有玩家都可用。
+
+这套设计适合下面这类场景：
+
+- 所有人都能用 `sw_hitmarker`
+- 只有管理员能用 `sw_damage`
+- 屏幕击中粒子只开放给 VIP 或特定权限玩家
+
+---
+
+## 配置文件
+
+本插件主要有两份配置文件：
+
+- 主配置：
+  - `configs/plugins/HanHitMarkerS2/HanHitMarkerCFG.jsonc`
+  - 根节点：`HanHitMarkerS2CFG`
+- WorldText 配置：
+  - `configs/plugins/HanHitMarkerS2/HanHitMarkerWorldTextCFG.jsonc`
+  - 根节点：`HanHitMarkerWorldTextS2CFG`
+
+翻译文件：
+
+- `src/resources/translations/zh-CN.jsonc`
+- `src/resources/translations/en.jsonc`
+
+---
+
+## 主配置说明
+
+### 击中特效
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `EnabledHitMark` | bool | 全局开启或关闭击中特效 |
+| `HitMarkType` | string | 显示方式：`worldtext` 或 `particles` |
+| `HitMarkOnlyTeam` | string | 仅允许指定队伍使用：`any`、`t`、`ct` |
+| `HitMarkHeadParticles` | string | 爆头击中特效粒子路径 |
+| `HitMarkBodyParticles` | string | 身体击中特效粒子路径 |
+| `HitMarkHeadSound` | string | 爆头音效，留空则不播放 |
+| `HitMarkBodySound` | string | 身体音效，留空则不播放 |
+| `HitMarkerFeaturePermission` | string | 使用击中特效所需权限 |
+| `PlayerDefaultHitMarkerEnabled` | bool | 玩家首次建立运行时状态时，击中特效默认是否开启 |
+| `HitMarkerToggleCommand` | string | 切换击中特效的命令名 |
+| `HitMarkerCommandPermission` | string | 使用切换命令所需权限 |
+
+### 伤害数字
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `EnabledDamageNumber` | bool | 全局开启或关闭伤害数字 |
+| `DamageNumberType` | string | 显示方式：`worldtext` 或 `particles` |
+| `DamageNumberOnlyTeam` | string | 仅允许指定队伍使用：`any`、`t`、`ct` |
+| `DamageNumberParticles0` - `DamageNumberParticles9` | string | 粒子数字模式下 0-9 每个数字对应的粒子路径 |
+| `DamageNumberSound` | string | 伤害数字音效，留空则不播放 |
+| `DamageNumberFeaturePermission` | string | 使用伤害数字所需权限 |
+| `PlayerDefaultDamageNumberEnabled` | bool | 玩家首次建立运行时状态时，伤害数字默认是否开启 |
+| `DamageNumberToggleCommand` | string | 切换伤害数字的命令名 |
+| `DamageNumberCommandPermission` | string | 使用切换命令所需权限 |
+
+### 屏幕击中粒子
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `EnabledScreenHitEffect` | bool | 全局开启或关闭屏幕击中粒子 |
+| `ScreenHitEffectOnlyTeam` | string | 仅允许指定队伍使用：`any`、`t`、`ct` |
+| `ScreenHitEffectHeadParticle` | string | 爆头时播放的屏幕粒子 |
+| `ScreenHitEffectBodyParticle` | string | 身体命中时播放的屏幕粒子 |
+| `ScreenHitEffectFeaturePermission` | string | 使用屏幕击中粒子所需权限 |
+| `PlayerDefaultScreenHitEffectEnabled` | bool | 玩家首次建立运行时状态时，屏幕击中粒子默认是否开启 |
+| `ScreenHitEffectToggleCommand` | string | 切换屏幕击中粒子的命令名 |
+| `ScreenHitEffectCommandPermission` | string | 使用切换命令所需权限 |
+
+### 共享字段
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `PrecacheSoundEvent` | string | 预缓存 sound event 文件，多个值用 `,` 分隔 |
+
+补充说明：
+
+- `HitMarkType` 与 `DamageNumberType`
+  - 推荐填写 `worldtext` 或 `particles`
+  - 为兼容旧配置，历史值 `1` 仍会被视为 `particles`
+  - 其他无效值都会按 `worldtext` 处理
+- `PlayerDefault...Enabled`
+  - 只在玩家第一次建立本局运行时状态时生效
+  - 它不是全局总开关
+- 屏幕粒子的高级底层参数已经固定在插件内部
+  - 不再对外暴露 attachment / split-screen / async dispatch 等实现细节
+
+---
+
+## WorldText 配置说明
+
+### 击中特效 WorldText
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `WTHitMarkSignHead` | string | 爆头标记字符，默认 `◎` |
+| `WTHitMarkSignBody` | string | 身体命中标记字符，默认 `X` |
+| `WTHitMarkSizeHead` | float | 爆头标记大小 |
+| `WTHitMarkSizeBody` | float | 身体标记大小 |
+| `WTHitMarkFontColor` | string | 文字颜色，格式：`R, G, B, A` |
+| `WTHitMarkDrawBackground` | bool | 是否绘制黑色背景框 |
+| `WTHitMarkFontName` | string | 字体名称 |
+
+### 伤害数字 WorldText
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `WTHitNumberPosType` | int | 数字漂浮方式：`0` 固定向上，`1` 随机弹跳 |
+| `WTHitNumberSizeHead` | float | 爆头伤害数字大小 |
+| `WTHitNumberSizeBody` | float | 身体伤害数字大小 |
+| `WTHitNumberFontColor` | string | 文字颜色，格式：`R, G, B, A` |
+| `WTHitNumberDrawBackground` | bool | 是否绘制黑色背景框 |
+| `WTHitNumberFontName` | string | 字体名称 |
+
+---
+
+## 配置示例
+
+### 主配置示例
+
+```jsonc
+{
+  "HanHitMarkerS2CFG": {
+    "EnabledHitMark": true,
+    "HitMarkType": "worldtext",
+    "HitMarkOnlyTeam": "any",
+    "HitMarkHeadParticles": "particles/exg/exg_hitmarker2.vpcf",
+    "HitMarkBodyParticles": "particles/exg/exg_hitmarker.vpcf",
+    "HitMarkHeadSound": "Breakable.Flesh",
+    "HitMarkBodySound": "Flesh_Bloody.ImpactHard",
+    "HitMarkerFeaturePermission": "",
+
+    "EnabledDamageNumber": true,
+    "DamageNumberType": "worldtext",
+    "DamageNumberOnlyTeam": "any",
+    "DamageNumberParticles0": "particles/exg/hitmarker/0.vpcf",
+    "DamageNumberParticles1": "particles/exg/hitmarker/01.vpcf",
+    "DamageNumberParticles2": "particles/exg/hitmarker/02.vpcf",
+    "DamageNumberParticles3": "particles/exg/hitmarker/03.vpcf",
+    "DamageNumberParticles4": "particles/exg/hitmarker/04.vpcf",
+    "DamageNumberParticles5": "particles/exg/hitmarker/05.vpcf",
+    "DamageNumberParticles6": "particles/exg/hitmarker/06.vpcf",
+    "DamageNumberParticles7": "particles/exg/hitmarker/07.vpcf",
+    "DamageNumberParticles8": "particles/exg/hitmarker/08.vpcf",
+    "DamageNumberParticles9": "particles/exg/hitmarker/09.vpcf",
+    "DamageNumberSound": "ceiling_tile.BulletImpact",
+    "DamageNumberFeaturePermission": "",
+
+    "EnabledScreenHitEffect": true,
+    "ScreenHitEffectOnlyTeam": "any",
+    "ScreenHitEffectHeadParticle": "particles/exg/screen_hit.vpcf",
+    "ScreenHitEffectBodyParticle": "particles/exg/screen_hit.vpcf",
+    "ScreenHitEffectFeaturePermission": "",
+
+    "PlayerDefaultHitMarkerEnabled": true,
+    "PlayerDefaultDamageNumberEnabled": true,
+    "PlayerDefaultScreenHitEffectEnabled": true,
+
+    "HitMarkerToggleCommand": "sw_hitmarker",
+    "DamageNumberToggleCommand": "sw_damage",
+    "ScreenHitEffectToggleCommand": "sw_screenhitmarker",
+
+    "HitMarkerCommandPermission": "",
+    "DamageNumberCommandPermission": "",
+    "ScreenHitEffectCommandPermission": "",
+
+    "PrecacheSoundEvent": "soundevents/game_sounds_physics.vsndevts"
+  }
+}
 ```
-HitMarkType
 
-0 = Use World Text / 使用 Worldtext
+### WorldText 配置示例
 
-1 = Use Workshop particle resources / 使用创意工坊粒子资源
+```jsonc
+{
+  "HanHitMarkerWorldTextS2CFG": {
+    "WTHitMarkSignHead": "◎",
+    "WTHitMarkSignBody": "X",
+    "WTHitMarkSizeHead": 25,
+    "WTHitMarkSizeBody": 20,
+    "WTHitMarkFontColor": "255, 0, 0, 255",
+    "WTHitMarkDrawBackground": false,
+    "WTHitMarkFontName": "Arial Bold",
 
-Default / 默认: 0
-
-DamageNumberType
-
-0 = Use World Text / 使用 Worldtext
-
-1 = Use Workshop particle resources / 使用创意工坊粒子资源
-
-Default / 默认: 0
-
-New configuration file / 新增配置文件
-
-HanHitMarkWorldTextCFG.jsonc
-
-World Text Hit Marker Settings / Worldtext 击中标记设置
-
-WTHitMarkSignHead
-Custom symbol for headshot hit marker / 击中爆头标记自定义符号
-Default / 默认: ⊙
-
-WTHitMarkSignBody
-Custom symbol for body hit marker / 击中身体标记自定义符号
-Default / 默认: X
-
-WTHitMarkSizeHead
-Custom symbol size for headshot hit marker / 击中爆头标记尺寸
-Default / 默认: 25
-
-WTHitMarkSizeBody
-Custom symbol size for body hit marker / 击中身体标记尺寸
-Default / 默认: 25
-
-WTHitMarkFontColor
-Custom color for hit marker text / 击中标记自定义颜色
-Default / 默认: "255, 0, 0, 255"
-
-WTHitMarkDrawBackground
-Enable black background box for hit marker / 是否开启黑色方框背景
-Default / 默认: false
-
-WTHitMarkFontName
-Custom font for hit marker / 击中标记自定义字体
-Default / 默认: "Arial Bold"
-
-World Text Damage Number Settings / Worldtext 击中数字设置
-
-WTHitNumberPosType
-Damage number display type / 击中数字显示类型
-
-0 = Fixed upward vertical movement / 固定竖直向上
-
-1 = Random bouncing movement / 随机跳动
-Default / 默认: 0
-
-WTHitNumberSizeHead
-Damage number size for headshots / 爆头数字尺寸
-Default / 默认: 25
-
-WTHitNumberSizeBody
-Damage number size for body hits / 身体数字尺寸
-Default / 默认: 20
-
-WTHitNumberFontColor
-Custom color for damage numbers / 击中数字自定义颜色
-Default / 默认: "255, 0, 0, 255"
-
-WTHitNumberDrawBackground
-Enable black background box for damage numbers / 是否开启黑色方框背景
-Default / 默认: false
-
-WTHitNumberFontName
-Custom font for damage numbers / 击中数字自定义字体
-Default / 默认: "Arial Bold"
+    "WTHitNumberPosType": 0,
+    "WTHitNumberSizeHead": 25,
+    "WTHitNumberSizeBody": 20,
+    "WTHitNumberFontColor": "255, 0, 0, 255",
+    "WTHitNumberDrawBackground": false,
+    "WTHitNumberFontName": "Arial Bold"
+  }
+}
 ```
+
+---
+
+## 翻译文件
+
+命令提示消息不再放在配置文件里，而是放在翻译文件中：
+
+- `src/resources/translations/zh-CN.jsonc`
+- `src/resources/translations/en.jsonc`
+
+你可以在这里修改：
+
+- 命令只能由玩家使用的提示
+- 功能开启/关闭提示
+- 全局关闭提示
+- 权限不足提示
+- 功能名称文本
+
+---
+
+## 粒子资源说明
+
+如果你使用：
+
+- `HitMarkType = "particles"`
+- `DamageNumberType = "particles"`
+- 或者配置了屏幕击中粒子
+
+那么你需要保证服务器已安装对应粒子资源。
+
+如果只使用 `worldtext`，则不需要额外 Workshop 粒子资源。
+
+旧版示例中使用过的创意工坊资源 ID：
+
+- `3626771819`
+
+如果你的服务器使用 `MultiAddonManager`，可以把 Workshop 资源交给它下载与分发，然后再用 `Source2Viewer` 查看粒子路径。
+
+---
+
+## 安装与构建
+
+1. 构建插件：
+
+```powershell
+dotnet build .\src\HanHitMarkerS2.csproj
+```
+
+2. 将输出文件部署到服务器插件目录。
+3. 编辑主配置：
+   - `configs/plugins/HanHitMarkerS2/HanHitMarkerCFG.jsonc`
+4. 如果你使用 `worldtext` 模式，再编辑：
+   - `configs/plugins/HanHitMarkerS2/HanHitMarkerWorldTextCFG.jsonc`
+5. 如果需要自定义命令提示文本，编辑：
+   - `src/resources/translations/zh-CN.jsonc`
+   - `src/resources/translations/en.jsonc`
+
+---
+
+## 上线前建议检查
+
+1. 三个默认命令是否都能正常注册。
+2. `HitMarkType` 与 `DamageNumberType` 是否按预期切换为 `worldtext` 或 `particles`。
+3. 爆头与身体命中时是否正确区分粒子和音效。
+4. `HitMarkerCommandPermission` 与 `HitMarkerFeaturePermission` 是否符合预期。
+5. 伤害数字 0-9 粒子资源是否完整。
+6. `ScreenHitEffectHeadParticle` 与 `ScreenHitEffectBodyParticle` 是否按命中部位区分生效。
+7. 修改配置后热重载是否符合预期。
