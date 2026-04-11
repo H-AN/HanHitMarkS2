@@ -5,78 +5,76 @@
 </div>
 
 <div align="center">
-  <a href="./README.en.md"><img src="https://flagcdn.com/48x36/gb.png" alt="English" width="48" height="36" /> <strong>English</strong></a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="./README.md"><img src="https://flagcdn.com/48x36/cn.png" alt="中文" width="48" height="36" /> <strong>中文版</strong></a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="./README.en.md"><img src="https://flagcdn.com/48x36/gb.png" alt="English" width="48" height="36" /> <strong>English</strong></a>
 </div>
 
 <hr>
 
-# HanHitMarkerS2 V3.0 Plugin refactoring
+# HanHitMarkerS2 V3.0 Plugin Refactor
 
-`HanHitMarkerS2` is a **SwiftlyS2** plugin for CS2 hit feedback.
-v3.0 adds support for DispatchParticleEffect, which sends hit effect particles directly to the player's crosshair on the screen.
+`HanHitMarkerS2` is a CS2 hit feedback plugin built on **SwiftlyS2**.
+V3.0 adds support for `DispatchParticleEffect`, allowing hit particles to be sent directly to the player's crosshair on screen.
 
-It provides three attacker-only feedback channels:
+It provides three types of feedback that are visible only to the attacker:
 
-- hit marker
-- damage number
-- screen hit particle
+- Hit marker
+- Damage number
+- Screen hit particle
 
-The hit marker and damage number can use either `WorldText` or particle mode, and the screen hit effect supports separate particles for headshots and body hits.
+Both hit marker and damage number support `WorldText` or particle display modes, and the screen hit particle supports separate particle settings for headshots and body hits.
 
 ---
 
 ## Feature Overview
 
-- All three effects are visible only to the attacker.
-- `HitMarkType` and `DamageNumberType` now use readable string values:
+- All three features are shown only to the attacker and are not broadcast to other players.
+- `HitMarkType` and `DamageNumberType` now use more intuitive string modes:
   - `worldtext`
   - `particles`
-- Empty or invalid `HitMarkType` / `DamageNumberType` values automatically fall back to `worldtext`.
-- Screen hit particles support separate head/body configuration:
+- If `HitMarkType` or `DamageNumberType` is empty or invalid, it automatically falls back to `worldtext`.
+- Screen hit particles support separate settings for headshots and body hits:
   - `ScreenHitEffectHeadParticle`
   - `ScreenHitEffectBodyParticle`
-- Each feature supports independent configuration for:
-  - global enable
-  - team restriction
-  - default player state
-  - toggle command
-  - command permission
-  - feature permission
-- Command replies are now stored in translation files instead of the main config.
-- Both main config and WorldText config support hot reload.
+- Each feature supports its own settings for:
+  - Global toggle
+  - Team restriction
+  - Player default toggle
+  - Toggle command
+  - Command permission
+  - Feature permission
+- Command reply text can be changed in the translation files.
+- Both the main config and the WorldText config support hot reload.
 
 ---
 
 ## Commands
 
-The plugin registers three raw commands by default:
+The plugin provides three raw commands by default:
 
-| Feature | Default command | Description |
+| Feature | Default Command | Description |
 |------|------|------|
-| Hit marker | `sw_hitmarker` | Toggle your own hit marker |
-| Damage number | `sw_damage` | Toggle your own damage number |
-| Screen hit particle | `sw_screenhitmarker` | Toggle your own screen hit effect |
+| Hit marker | `sw_hitmarker` | Toggle your own hit marker (on/off) |
+| Damage number | `sw_damage` | Toggle your own damage number (on/off) |
+| Screen hit particle | `sw_screenhitmarker` | Toggle your own screen hit particle (on/off) |
 
 Notes:
 
-- These names are registered directly as raw command names. The plugin no longer exposes a `register raw` option.
-- If your server wraps commands through chat prefixes, they can usually still be used through your existing command flow.
-- Each command can have its own permission requirement.
+- Each command can have its own permission.
 
 ---
 
-## Permission Model
+## Permission Design
 
-Each feature now has two different permission fields:
+Each feature now has two permission fields:
 
 - `XXXCommandPermission`
-  - controls who is allowed to run the toggle command
+  - Controls who can run the toggle command
 - `XXXFeaturePermission`
-  - controls who is actually allowed to use the feature
+  - Controls who can actually use the feature
 
-For hit marker, for example:
+Using hit marker as an example:
 
 - `HitMarkerCommandPermission`
 - `HitMarkerFeaturePermission`
@@ -90,28 +88,28 @@ The same applies to:
 
 Behavior rules:
 
-- Command permission failed: the player cannot toggle that feature by command.
-- Feature permission failed: the player will not actually get the effect even if the default state is enabled.
-- Empty permission field: everyone can use it.
+- If the command permission is not met, the player cannot toggle that feature with the command.
+- If the feature permission is not met, the player will not actually see the feature even if it is enabled by default.
+- If the permission field is empty, it means all players can use it.
 
-This makes it easy to support cases such as:
+This design works well for scenarios like:
 
-- everyone can use `sw_hitmarker`
-- only admins can use `sw_damage`
-- screen hit particles are limited to VIP or custom permission groups
+- Everyone can use `sw_hitmarker`
+- Only admins can use `sw_damage`
+- Screen hit particles are available only to VIP players or players with a specific permission
 
 ---
 
 ## Configuration Files
 
-The plugin mainly uses two config files:
+This plugin mainly uses two config files:
 
 - Main config:
   - `configs/plugins/HanHitMarkerS2/HanHitMarkerCFG.jsonc`
-  - root section: `HanHitMarkerS2CFG`
+  - Root node: `HanHitMarkerS2CFG`
 - WorldText config:
   - `configs/plugins/HanHitMarkerS2/HanHitMarkerWorldTextCFG.jsonc`
-  - root section: `HanHitMarkerWorldTextS2CFG`
+  - Root node: `HanHitMarkerWorldTextS2CFG`
 
 Translation files:
 
@@ -128,13 +126,13 @@ Translation files:
 |------|------|------|
 | `EnabledHitMark` | bool | Globally enable or disable hit marker |
 | `HitMarkType` | string | Display mode: `worldtext` or `particles` |
-| `HitMarkOnlyTeam` | string | Restrict by team: `any`, `t`, `ct` |
-| `HitMarkHeadParticles` | string | Headshot hit marker particle path |
-| `HitMarkBodyParticles` | string | Body hit marker particle path |
-| `HitMarkHeadSound` | string | Headshot sound, leave empty to disable |
-| `HitMarkBodySound` | string | Body sound, leave empty to disable |
-| `HitMarkerFeaturePermission` | string | Permission required to actually use hit marker |
-| `PlayerDefaultHitMarkerEnabled` | bool | Default hit marker state when a player's runtime state is first created |
+| `HitMarkOnlyTeam` | string | Allow only a specific team: `any`, `t`, `ct` |
+| `HitMarkHeadParticles` | string | Particle path used for headshot hit marker |
+| `HitMarkBodyParticles` | string | Particle path used for body hit marker |
+| `HitMarkHeadSound` | string | Headshot sound; leave empty to disable |
+| `HitMarkBodySound` | string | Body-hit sound; leave empty to disable |
+| `HitMarkerFeaturePermission` | string | Permission required to use the hit marker |
+| `PlayerDefaultHitMarkerEnabled` | bool | Whether hit marker is enabled by default when the player's runtime state is created for the first time |
 | `HitMarkerToggleCommand` | string | Command name used to toggle hit marker |
 | `HitMarkerCommandPermission` | string | Permission required to use the toggle command |
 
@@ -144,11 +142,11 @@ Translation files:
 |------|------|------|
 | `EnabledDamageNumber` | bool | Globally enable or disable damage number |
 | `DamageNumberType` | string | Display mode: `worldtext` or `particles` |
-| `DamageNumberOnlyTeam` | string | Restrict by team: `any`, `t`, `ct` |
-| `DamageNumberParticles0` - `DamageNumberParticles9` | string | Particle paths for digits 0-9 when using particle digit mode |
-| `DamageNumberSound` | string | Sound for damage number feedback, leave empty to disable |
-| `DamageNumberFeaturePermission` | string | Permission required to actually use damage number |
-| `PlayerDefaultDamageNumberEnabled` | bool | Default damage number state when a player's runtime state is first created |
+| `DamageNumberOnlyTeam` | string | Allow only a specific team: `any`, `t`, `ct` |
+| `DamageNumberParticles0` - `DamageNumberParticles9` | string | Particle paths for digits 0-9 when using particle number mode |
+| `DamageNumberSound` | string | Damage number sound; leave empty to disable |
+| `DamageNumberFeaturePermission` | string | Permission required to use damage number |
+| `PlayerDefaultDamageNumberEnabled` | bool | Whether damage number is enabled by default when the player's runtime state is created for the first time |
 | `DamageNumberToggleCommand` | string | Command name used to toggle damage number |
 | `DamageNumberCommandPermission` | string | Permission required to use the toggle command |
 
@@ -156,13 +154,13 @@ Translation files:
 
 | Field | Type | Description |
 |------|------|------|
-| `EnabledScreenHitEffect` | bool | Globally enable or disable screen hit effect |
-| `ScreenHitEffectOnlyTeam` | string | Restrict by team: `any`, `t`, `ct` |
-| `ScreenHitEffectHeadParticle` | string | Screen particle used for headshots |
-| `ScreenHitEffectBodyParticle` | string | Screen particle used for body hits |
-| `ScreenHitEffectFeaturePermission` | string | Permission required to actually use screen hit effect |
-| `PlayerDefaultScreenHitEffectEnabled` | bool | Default screen hit effect state when a player's runtime state is first created |
-| `ScreenHitEffectToggleCommand` | string | Command name used to toggle screen hit effect |
+| `EnabledScreenHitEffect` | bool | Globally enable or disable the screen hit particle |
+| `ScreenHitEffectOnlyTeam` | string | Allow only a specific team: `any`, `t`, `ct` |
+| `ScreenHitEffectHeadParticle` | string | Screen particle played on headshot |
+| `ScreenHitEffectBodyParticle` | string | Screen particle played on body hit |
+| `ScreenHitEffectFeaturePermission` | string | Permission required to use the screen hit particle |
+| `PlayerDefaultScreenHitEffectEnabled` | bool | Whether screen hit particle is enabled by default when the player's runtime state is created for the first time |
+| `ScreenHitEffectToggleCommand` | string | Command name used to toggle the screen hit particle |
 | `ScreenHitEffectCommandPermission` | string | Permission required to use the toggle command |
 
 ### Shared Field
@@ -171,17 +169,15 @@ Translation files:
 |------|------|------|
 | `PrecacheSoundEvent` | string | Sound event files to precache, separated by `,` |
 
-Extra notes:
+Additional notes:
 
 - `HitMarkType` and `DamageNumberType`
-  - recommended values are `worldtext` or `particles`
-  - legacy value `1` is still treated as `particles`
-  - any other invalid value falls back to `worldtext`
+  - Recommended values are `worldtext` or `particles`
+  - For compatibility with older configs, the legacy value `1` is still treated as `particles`
+  - Any other invalid value is handled as `worldtext`
 - `PlayerDefault...Enabled`
-  - only affects the initial runtime state for a player
-  - it is not the same thing as the global feature switch
-- Advanced screen particle dispatch settings are now fixed internally
-  - attachment / split-screen / async-dispatch details are no longer exposed to users
+  - Only takes effect when the player's runtime state is created for the first time in the current match
+  - It is not the global master switch
 
 ---
 
@@ -191,23 +187,23 @@ Extra notes:
 
 | Field | Type | Description |
 |------|------|------|
-| `WTHitMarkSignHead` | string | Headshot symbol, default `◎` |
-| `WTHitMarkSignBody` | string | Body-hit symbol, default `X` |
+| `WTHitMarkSignHead` | string | Headshot marker character, default `◎` |
+| `WTHitMarkSignBody` | string | Body-hit marker character, default `X` |
 | `WTHitMarkSizeHead` | float | Headshot marker size |
 | `WTHitMarkSizeBody` | float | Body marker size |
-| `WTHitMarkFontColor` | string | Text color in `R, G, B, A` format |
-| `WTHitMarkDrawBackground` | bool | Draw black background box |
+| `WTHitMarkFontColor` | string | Text color in format: `R, G, B, A` |
+| `WTHitMarkDrawBackground` | bool | Whether to draw a black background box |
 | `WTHitMarkFontName` | string | Font name |
 
 ### Damage Number WorldText
 
 | Field | Type | Description |
 |------|------|------|
-| `WTHitNumberPosType` | int | Floating style: `0` fixed upward, `1` random bounce |
+| `WTHitNumberPosType` | int | Number float mode: `0` fixed upward, `1` random bounce |
 | `WTHitNumberSizeHead` | float | Headshot damage number size |
-| `WTHitNumberSizeBody` | float | Body damage number size |
-| `WTHitNumberFontColor` | string | Text color in `R, G, B, A` format |
-| `WTHitNumberDrawBackground` | bool | Draw black background box |
+| `WTHitNumberSizeBody` | float | Body-hit damage number size |
+| `WTHitNumberFontColor` | string | Text color in format: `R, G, B, A` |
+| `WTHitNumberDrawBackground` | bool | Whether to draw a black background box |
 | `WTHitNumberFontName` | string | Font name |
 
 ---
@@ -294,18 +290,16 @@ Extra notes:
 
 ## Translation Files
 
-Command replies are no longer stored in the main config. They now live in:
-
 - `src/resources/translations/zh-CN.jsonc`
 - `src/resources/translations/en.jsonc`
 
 You can edit these files to change:
 
-- player-only command message
-- enabled / disabled reply text
-- globally-disabled reply text
-- no-permission reply text
-- localized feature names
+- The message that tells users the command can only be used by players
+- Feature enabled/disabled messages
+- Global disabled messages
+- No-permission messages
+- Feature name text
 
 ---
 
@@ -315,45 +309,30 @@ If you use:
 
 - `HitMarkType = "particles"`
 - `DamageNumberType = "particles"`
-- or configured screen hit particles
+- Or configure screen hit particles
 
-then your server must provide the required particle assets.
+then you need to make sure the required particle resources are installed on the server.
 
-If you only use `worldtext`, no extra Workshop particle pack is required.
+If you only use `worldtext`, no extra Workshop particle resources are required.
 
-An older example Workshop resource used by this plugin family:
+Workshop resource ID (example):
 
 - `3626771819`
 
-If your server uses `MultiAddonManager`, you can let it download and distribute the Workshop addon, then inspect particle paths with `Source2Viewer`.
+If your server uses `MultiAddonManager`, you can let it download and distribute the Workshop resource, then use `Source2Viewer` to inspect particle paths.
 
 ---
 
-## Build and Deployment
-
-1. Build the plugin:
-
-```powershell
-dotnet build .\src\HanHitMarkerS2.csproj
-```
-
-2. Deploy the output files into your server plugin directory.
-3. Edit the main config:
-   - `configs/plugins/HanHitMarkerS2/HanHitMarkerCFG.jsonc`
-4. If you use `worldtext` mode, also edit:
-   - `configs/plugins/HanHitMarkerS2/HanHitMarkerWorldTextCFG.jsonc`
-5. If you want custom reply text, edit:
-   - `src/resources/translations/zh-CN.jsonc`
-   - `src/resources/translations/en.jsonc`
+## Installation and Build
 
 ---
 
-## Recommended Validation
+## Usage Recommendations and Checks
 
-1. Verify all three default commands register correctly.
-2. Verify `HitMarkType` and `DamageNumberType` switch correctly between `worldtext` and `particles`.
-3. Verify headshot/body hit cases use the expected particle and sound.
-4. Verify `HitMarkerCommandPermission` and `HitMarkerFeaturePermission` behave as expected.
-5. Verify all 10 digit particles for damage number mode are present.
-6. Verify `ScreenHitEffectHeadParticle` and `ScreenHitEffectBodyParticle` trigger correctly by hit location.
-7. Verify hot reload updates behavior as expected after config edits.
+1. Make sure all three default commands register correctly.
+2. Make sure `HitMarkType` and `DamageNumberType` switch to `worldtext` or `particles` as expected.
+3. Make sure headshots and body hits use the correct particles and sounds.
+4. Make sure `HitMarkerCommandPermission` and `HitMarkerFeaturePermission` behave as expected.
+5. Make sure the damage number particle resources for digits 0-9 are complete.
+6. Make sure `ScreenHitEffectHeadParticle` and `ScreenHitEffectBodyParticle` work separately based on hit location.
+7. Make sure hot reload behaves as expected after config changes.
