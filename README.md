@@ -44,7 +44,7 @@ v3.0 新增支持 DispatchParticleEffect 将击中特效粒子直接发送至玩
   - 切换命令
   - 命令权限
   - 功能权限
-- 命令提示文本已经迁移到翻译文件，不再写在配置文件内。
+- 命令提示文本可在翻译文件中更改。
 - 主配置与 WorldText 配置都支持热重载。
 
 ---
@@ -55,16 +55,12 @@ v3.0 新增支持 DispatchParticleEffect 将击中特效粒子直接发送至玩
 
 | 功能 | 默认命令 | 说明 |
 |------|------|------|
-| 击中特效 | `sw_hitmarker` | 切换自己的击中特效 |
-| 伤害数字 | `sw_damage` | 切换自己的伤害数字 |
-| 屏幕击中粒子 | `sw_screenhitmarker` | 切换自己的屏幕击中粒子 |
+| 击中特效 | `sw_hitmarker` | 切换自己的击中特效 (开关)|
+| 伤害数字 | `sw_damage` | 切换自己的伤害数字 (开关)|
+| 屏幕击中粒子 | `sw_screenhitmarker` | 切换自己的屏幕击中粒子 (开关)|
 
 说明：
-
-- 这些命令以原始命令名注册，插件内部不再暴露“是否注册为 raw”的配置项。
-- 如果你的服务器命令系统支持聊天命令封装，通常也可以配合聊天前缀使用。
 - 每个命令都可以独立设置权限。
-
 ---
 
 ## 权限设计
@@ -180,9 +176,6 @@ v3.0 新增支持 DispatchParticleEffect 将击中特效粒子直接发送至玩
 - `PlayerDefault...Enabled`
   - 只在玩家第一次建立本局运行时状态时生效
   - 它不是全局总开关
-- 屏幕粒子的高级底层参数已经固定在插件内部
-  - 不再对外暴露 attachment / split-screen / async dispatch 等实现细节
-
 ---
 
 ## WorldText 配置说明
@@ -294,8 +287,6 @@ v3.0 新增支持 DispatchParticleEffect 将击中特效粒子直接发送至玩
 
 ## 翻译文件
 
-命令提示消息不再放在配置文件里，而是放在翻译文件中：
-
 - `src/resources/translations/zh-CN.jsonc`
 - `src/resources/translations/en.jsonc`
 
@@ -321,7 +312,7 @@ v3.0 新增支持 DispatchParticleEffect 将击中特效粒子直接发送至玩
 
 如果只使用 `worldtext`，则不需要额外 Workshop 粒子资源。
 
-旧版示例中使用过的创意工坊资源 ID：
+创意工坊资源 ID(示例)：
 
 - `3626771819`
 
@@ -331,24 +322,9 @@ v3.0 新增支持 DispatchParticleEffect 将击中特效粒子直接发送至玩
 
 ## 安装与构建
 
-1. 构建插件：
-
-```powershell
-dotnet build .\src\HanHitMarkerS2.csproj
-```
-
-2. 将输出文件部署到服务器插件目录。
-3. 编辑主配置：
-   - `configs/plugins/HanHitMarkerS2/HanHitMarkerCFG.jsonc`
-4. 如果你使用 `worldtext` 模式，再编辑：
-   - `configs/plugins/HanHitMarkerS2/HanHitMarkerWorldTextCFG.jsonc`
-5. 如果需要自定义命令提示文本，编辑：
-   - `src/resources/translations/zh-CN.jsonc`
-   - `src/resources/translations/en.jsonc`
-
 ---
 
-## 上线前建议检查
+## 使用建议与检查
 
 1. 三个默认命令是否都能正常注册。
 2. `HitMarkType` 与 `DamageNumberType` 是否按预期切换为 `worldtext` 或 `particles`。
