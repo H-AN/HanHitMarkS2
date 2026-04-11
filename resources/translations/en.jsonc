@@ -1,0 +1,12 @@
+{
+  "HanHitMarker.Command.PlayerOnly": "[HitMarker] This command can only be used by players",
+  "HanHitMarker.Command.Feature.Enabled": "[HitMarker] {0} enabled",
+  "HanHitMarker.Command.Feature.Disabled": "[HitMarker] {0} disabled",
+  "HanHitMarker.Command.Feature.BlockedByGlobal": "[HitMarker] {0} is currently disabled globally",
+  "HanHitMarker.Command.Feature.CommandPermissionDenied": "[HitMarker] You do not have permission to toggle {0}",
+  "HanHitMarker.Command.Feature.UsePermissionDenied": "[HitMarker] You do not have permission to use {0}",
+  "HanHitMarker.Command.Feature.Name.HitMarker": "Hit marker",
+  "HanHitMarker.Command.Feature.Name.DamageNumber": "Damage number",
+  "HanHitMarker.Command.Feature.Name.ScreenHitEffect": "Screen hit effect",
+  "HanHitMarker.Command.Feature.Name.Unknown": "Feature"
+}

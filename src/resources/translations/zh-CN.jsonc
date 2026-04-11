@@ -1,0 +1,12 @@
+{
+  "HanHitMarker.Command.PlayerOnly": "[HitMarker] 仅玩家可使用该命令",
+  "HanHitMarker.Command.Feature.Enabled": "[HitMarker] {0} 已开启",
+  "HanHitMarker.Command.Feature.Disabled": "[HitMarker] {0} 已关闭",
+  "HanHitMarker.Command.Feature.BlockedByGlobal": "[HitMarker] {0} 当前被服务器全局关闭",
+  "HanHitMarker.Command.Feature.CommandPermissionDenied": "[HitMarker] 你没有权限切换 {0}",
+  "HanHitMarker.Command.Feature.UsePermissionDenied": "[HitMarker] 你没有权限使用 {0}",
+  "HanHitMarker.Command.Feature.Name.HitMarker": "击中特效",
+  "HanHitMarker.Command.Feature.Name.DamageNumber": "伤害数字",
+  "HanHitMarker.Command.Feature.Name.ScreenHitEffect": "屏幕击中粒子",
+  "HanHitMarker.Command.Feature.Name.Unknown": "功能"
+}
