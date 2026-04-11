@@ -12,9 +12,10 @@
 
 <hr>
 
-# HanHitMarkerS2
+# HanHitMarkerS2 V3.0 Plugin refactoring
 
 `HanHitMarkerS2` is a **SwiftlyS2** plugin for CS2 hit feedback.
+v3.0 adds support for DispatchParticleEffect, which sends hit effect particles directly to the player's crosshair on the screen.
 
 It provides three attacker-only feedback channels:
 
