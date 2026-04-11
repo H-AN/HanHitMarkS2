@@ -245,8 +245,8 @@ Extra notes:
 
     "EnabledScreenHitEffect": true,
     "ScreenHitEffectOnlyTeam": "any",
-    "ScreenHitEffectHeadParticle": "particles/exg/screen_hit.vpcf",
-    "ScreenHitEffectBodyParticle": "particles/exg/screen_hit.vpcf",
+    "ScreenHitEffectHeadParticle": "particles/cgmentos/hitmarker/overlay_hitmarker_head.vpcf",
+    "ScreenHitEffectBodyParticle": "particles/cgmentos/hitmarker/overlay_hitmarker_body.vpcf",
     "ScreenHitEffectFeaturePermission": "",
 
     "PlayerDefaultHitMarkerEnabled": true,
