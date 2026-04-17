@@ -6,7 +6,7 @@
 
 ---
 
-[![cn](https://flagcdn.com/48x36/cn.png)Chinese](./README.md) 
+[![cn](https://flagcdn.com/48x36/cn.png)中文版](./README.md) 
 [![en](https://flagcdn.com/48x36/gb.png)English](./README.en.md)
 <hr>
 
