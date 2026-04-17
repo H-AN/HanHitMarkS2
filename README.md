@@ -4,6 +4,8 @@
   </a>
 </div>
 
+---
+
 [![cn](https://flagcdn.com/48x36/cn.png)中文版](./README.md) 
 [![en](https://flagcdn.com/48x36/gb.png)英文版](./README.en.md)
 
