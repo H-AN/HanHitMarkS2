@@ -7,7 +7,7 @@
 ---
 
 [![cn](https://flagcdn.com/48x36/cn.png)中文版](./README.md) 
-[![en](https://flagcdn.com/48x36/gb.png)英文版](./README.en.md)
+[![en](https://flagcdn.com/48x36/gb.png)English](./README.en.md)
 
 ---
 如果你喜欢这个插件,可以用以下方式支持我,感谢!
