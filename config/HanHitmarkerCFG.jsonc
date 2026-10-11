@@ -1,0 +1,193 @@
+{
+  "HanHitmarkerCFG": {
+    "Enabled": true,
+    "MenuCommand": "sw_hm",
+    "DefaultParticleGroup": "默认",
+    "PlayerDefaultCenterEffectEnabled": true,
+    "PlayerDefaultDamageNumberEnabled": true,
+    "DamageNumberHeightOffset": 5,
+    "DamageNumberSpacing": 13,
+    "DamageNumberLifetimeSeconds": 0.4,
+    "PrecacheSoundEvents": [
+      "soundevents/hanhmsounds.vsndevts"
+    ],
+    "ParticleGroups": [
+      {
+        "Enabled": true,
+        "Name": "默认",
+        "AdminFlag": "",
+        "CenterHeadParticle": "particles/han/hitmarker/center_hitmarker_head.vpcf",
+        "CenterBodyParticle": "particles/han/hitmarker/center_hitmarker_body.vpcf",
+        "DamageDigitParticles": [
+          "particles/han/number/art/00.vpcf",
+          "particles/han/number/art/01.vpcf",
+          "particles/han/number/art/02.vpcf",
+          "particles/han/number/art/03.vpcf",
+          "particles/han/number/art/04.vpcf",
+          "particles/han/number/art/05.vpcf",
+          "particles/han/number/art/06.vpcf",
+          "particles/han/number/art/07.vpcf",
+          "particles/han/number/art/08.vpcf",
+          "particles/han/number/art/09.vpcf"
+        ],
+        "HitHeadSound": "han.hit.head",
+        "HitBodySound": "han.hit.body",
+        "DamageNumberSound": "han.hit.number"
+      },
+      {
+        "Enabled": true,
+        "Name": "猎天使魔女",
+        "AdminFlag": "",
+        "CenterHeadParticle": "particles/han/hitmarker/circle_ticks/circle_ticks_hitmarker_head.vpcf",
+        "CenterBodyParticle": "particles/han/hitmarker/circle_ticks/circle_ticks_hitmarker_body.vpcf",
+        "DamageDigitParticles": [
+          "particles/han/number/bayonetta/00.vpcf",
+          "particles/han/number/bayonetta/01.vpcf",
+          "particles/han/number/bayonetta/02.vpcf",
+          "particles/han/number/bayonetta/03.vpcf",
+          "particles/han/number/bayonetta/04.vpcf",
+          "particles/han/number/bayonetta/05.vpcf",
+          "particles/han/number/bayonetta/06.vpcf",
+          "particles/han/number/bayonetta/07.vpcf",
+          "particles/han/number/bayonetta/08.vpcf",
+          "particles/han/number/bayonetta/09.vpcf"
+        ],
+        "HitHeadSound": "han.hit.head",
+        "HitBodySound": "han.hit.body",
+        "DamageNumberSound": "han.hit.number"
+      },
+      {
+        "Enabled": true,
+        "Name": "赛博朋克",
+        "AdminFlag": "",
+        "CenterHeadParticle": "particles/han/hitmarker/corner_brackets/corner_brackets_hitmarker_head.vpcf",
+        "CenterBodyParticle": "particles/han/hitmarker/corner_brackets/corner_brackets_hitmarker_body.vpcf",
+        "DamageDigitParticles": [
+          "particles/han/number/cyberpunk/00.vpcf",
+          "particles/han/number/cyberpunk/01.vpcf",
+          "particles/han/number/cyberpunk/02.vpcf",
+          "particles/han/number/cyberpunk/03.vpcf",
+          "particles/han/number/cyberpunk/04.vpcf",
+          "particles/han/number/cyberpunk/05.vpcf",
+          "particles/han/number/cyberpunk/06.vpcf",
+          "particles/han/number/cyberpunk/07.vpcf",
+          "particles/han/number/cyberpunk/08.vpcf",
+          "particles/han/number/cyberpunk/09.vpcf"
+        ],
+        "HitHeadSound": "han.hit.head",
+        "HitBodySound": "han.hit.body",
+        "DamageNumberSound": "han.hit.number"
+      },
+      {
+        "Enabled": true,
+        "Name": "死亡笔记L",
+        "AdminFlag": "",
+        "CenterHeadParticle": "particles/han/hitmarker/bold_x/bold_x_hitmarker_head.vpcf",
+        "CenterBodyParticle": "particles/han/hitmarker/bold_x/bold_x_hitmarker_body.vpcf",
+        "DamageDigitParticles": [
+          "particles/han/number/deathnote_l/00.vpcf",
+          "particles/han/number/deathnote_l/01.vpcf",
+          "particles/han/number/deathnote_l/02.vpcf",
+          "particles/han/number/deathnote_l/03.vpcf",
+          "particles/han/number/deathnote_l/04.vpcf",
+          "particles/han/number/deathnote_l/05.vpcf",
+          "particles/han/number/deathnote_l/06.vpcf",
+          "particles/han/number/deathnote_l/07.vpcf",
+          "particles/han/number/deathnote_l/08.vpcf",
+          "particles/han/number/deathnote_l/09.vpcf"
+        ],
+        "HitHeadSound": "han.hit.head",
+        "HitBodySound": "han.hit.body",
+        "DamageNumberSound": "han.hit.number"
+      },
+      {
+        "Enabled": true,
+        "Name": "堡垒之夜",
+        "AdminFlag": "",
+        "CenterHeadParticle": "particles/han/hitmarker/center_hitmarker_head.vpcf",
+        "CenterBodyParticle": "particles/han/hitmarker/center_hitmarker_body.vpcf",
+        "DamageDigitParticles": [
+          "particles/han/number/fortnite/00.vpcf",
+          "particles/han/number/fortnite/01.vpcf",
+          "particles/han/number/fortnite/02.vpcf",
+          "particles/han/number/fortnite/03.vpcf",
+          "particles/han/number/fortnite/04.vpcf",
+          "particles/han/number/fortnite/05.vpcf",
+          "particles/han/number/fortnite/06.vpcf",
+          "particles/han/number/fortnite/07.vpcf",
+          "particles/han/number/fortnite/08.vpcf",
+          "particles/han/number/fortnite/09.vpcf"
+        ],
+        "HitHeadSound": "han.hit.head",
+        "HitBodySound": "han.hit.body",
+        "DamageNumberSound": "han.hit.number"
+      },
+      {
+        "Enabled": true,
+        "Name": "战神",
+        "AdminFlag": "",
+        "CenterHeadParticle": "particles/han/hitmarker/circle_ticks/circle_ticks_hitmarker_head.vpcf",
+        "CenterBodyParticle": "particles/han/hitmarker/circle_ticks/circle_ticks_hitmarker_body.vpcf",
+        "DamageDigitParticles": [
+          "particles/han/number/god_of_war/00.vpcf",
+          "particles/han/number/god_of_war/01.vpcf",
+          "particles/han/number/god_of_war/02.vpcf",
+          "particles/han/number/god_of_war/03.vpcf",
+          "particles/han/number/god_of_war/04.vpcf",
+          "particles/han/number/god_of_war/05.vpcf",
+          "particles/han/number/god_of_war/06.vpcf",
+          "particles/han/number/god_of_war/07.vpcf",
+          "particles/han/number/god_of_war/08.vpcf",
+          "particles/han/number/god_of_war/09.vpcf"
+        ],
+        "HitHeadSound": "han.hit.head",
+        "HitBodySound": "han.hit.body",
+        "DamageNumberSound": "han.hit.number"
+      },
+      {
+        "Enabled": true,
+        "Name": "圣斗士星矢",
+        "AdminFlag": "",
+        "CenterHeadParticle": "particles/han/hitmarker/corner_brackets/corner_brackets_hitmarker_head.vpcf",
+        "CenterBodyParticle": "particles/han/hitmarker/corner_brackets/corner_brackets_hitmarker_body.vpcf",
+        "DamageDigitParticles": [
+          "particles/han/number/saint_seiya/00.vpcf",
+          "particles/han/number/saint_seiya/01.vpcf",
+          "particles/han/number/saint_seiya/02.vpcf",
+          "particles/han/number/saint_seiya/03.vpcf",
+          "particles/han/number/saint_seiya/04.vpcf",
+          "particles/han/number/saint_seiya/05.vpcf",
+          "particles/han/number/saint_seiya/06.vpcf",
+          "particles/han/number/saint_seiya/07.vpcf",
+          "particles/han/number/saint_seiya/08.vpcf",
+          "particles/han/number/saint_seiya/09.vpcf"
+        ],
+        "HitHeadSound": "han.hit.head",
+        "HitBodySound": "han.hit.body",
+        "DamageNumberSound": "han.hit.number"
+      },
+      {
+        "Enabled": true,
+        "Name": "魔法少女小樱",
+        "AdminFlag": "",
+        "CenterHeadParticle": "particles/han/hitmarker/bold_x/bold_x_hitmarker_head.vpcf",
+        "CenterBodyParticle": "particles/han/hitmarker/bold_x/bold_x_hitmarker_body.vpcf",
+        "DamageDigitParticles": [
+          "particles/han/number/sakura_magic/00.vpcf",
+          "particles/han/number/sakura_magic/01.vpcf",
+          "particles/han/number/sakura_magic/02.vpcf",
+          "particles/han/number/sakura_magic/03.vpcf",
+          "particles/han/number/sakura_magic/04.vpcf",
+          "particles/han/number/sakura_magic/05.vpcf",
+          "particles/han/number/sakura_magic/06.vpcf",
+          "particles/han/number/sakura_magic/07.vpcf",
+          "particles/han/number/sakura_magic/08.vpcf",
+          "particles/han/number/sakura_magic/09.vpcf"
+        ],
+        "HitHeadSound": "han.hit.head",
+        "HitBodySound": "han.hit.body",
+        "DamageNumberSound": "han.hit.number"
+      }
+    ]
+  }
+}
